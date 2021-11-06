@@ -16,7 +16,8 @@ auth = firebase.auth()
 
 storage = firebase.storage()
 
-if LoginGUI.requestLogin():
+
+def LoginUser():
     (email, password) = LoginGUI.getLoginInfo()
     try:
         auth.sign_in_with_email_and_password(email, password)
@@ -25,3 +26,20 @@ if LoginGUI.requestLogin():
     except:
         LoginGUI.failedLogin()
         print("Invalid email or password")
+
+
+def SignupUser():
+    (email, password, confirm) = LoginGUI.getSignupInfo()
+    if password == confirm:
+        try:
+            auth.create_user_with_email_and_password(email, password)
+        except:
+            LoginGUI.failedSignup()
+            print("Signup Failed")
+    else:
+        LoginGUI.failedSignup()
+        print("Password and confirm do not match")
+
+
+def LoginMenu():
+    pass
