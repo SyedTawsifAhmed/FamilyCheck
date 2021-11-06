@@ -45,5 +45,36 @@ def signup_user():
         print("Password and confirm do not match")
 
 
-def login_menu():
+def AddFamily():
     pass
+
+
+def AskQuestion():
+    answers = LoginGUI.Questionnaire()
+    numYes = 0
+    for answer in answers:
+        if answer:
+            numYes += 1
+
+    if numYes == 0:
+        # Safe
+        pass
+    if numYes == 1:
+        # Warning
+        pass
+    if numYes == 2:
+        # Isolation
+        pass
+    else:
+        # Danger
+        pass
+
+
+def login_menu(option):
+    if option == 1:
+        # Add family/friend
+        AddFamily()
+    else:
+        # Do questionnaire
+        AskQuestion()
+

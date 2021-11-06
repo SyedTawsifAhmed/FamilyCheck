@@ -24,3 +24,6 @@ def failed_signup():
 
 def get_signup_info():
     return None
+
+def Questionnaire():
+    return None
