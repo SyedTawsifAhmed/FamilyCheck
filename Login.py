@@ -8,7 +8,7 @@ firebaseConfig = {'apiKey': "AIzaSyC2LCENKnFLqlnojcWT8CDhTp09sFyothI",
                   'messagingSenderId': "483052018275",
                   'appId': "1:483052018275:web:ceebcd7a3c8f2f8d90f656",
                   'measurementId': "G-YCW48KPJPX",
-                  'databaseURL': " "}
+                  'databaseURL': "https://familycheck-14b96-default-rtdb.firebaseio.com/"}
 
 firebase = pyrebase.initialize_app(firebaseConfig)
 
@@ -103,3 +103,5 @@ def login_menu(option, email):
 
 def RunGUI():
     LoginGUI.LoginScreen().run()
+
+
