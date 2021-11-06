@@ -40,3 +40,15 @@ def get_signup_info():
 
 def questionnaire():
     return None
+
+
+def get_profile_info():
+    return None
+
+
+def get_family_info():
+    return None
+
+
+def failed_add():
+    return None
