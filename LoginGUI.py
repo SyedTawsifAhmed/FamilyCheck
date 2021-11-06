@@ -12,3 +12,15 @@ def successfulLogin():
 
 def failedLogin():
     return None
+
+
+def requestSignup():
+    return None
+
+
+def failedSignup():
+    return None
+
+
+def getSignupInfo():
+    return None
