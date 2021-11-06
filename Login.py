@@ -54,7 +54,7 @@ def add_family():
 def ask_question():
     """ asks questions from the questionnaire to decide if one has symptoms or not"""
 
-    answers = LoginGUI.Questionnaire()
+    answers = LoginGUI.questionnaire()
     numYes = 0
     for answer in answers:
         if answer:
