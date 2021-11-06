@@ -45,12 +45,16 @@ def signup_user():
         print("Password and confirm do not match")
 
 
-def AddFamily():
+def add_family():
+    """adds family members to the login menu or proceeds to the menu when no other family members"""
+
     pass
 
 
-def AskQuestion():
-    answers = LoginGUI.Questionnaire()
+def ask_question():
+    """ asks questions from the questionnaire to decide if one has symptoms or not"""
+
+    answers = LoginGUI.questionnaire()
     numYes = 0
     for answer in answers:
         if answer:
@@ -73,8 +77,8 @@ def AskQuestion():
 def login_menu(option):
     if option == 1:
         # Add family/friend
-        AddFamily()
+        add_family()
     else:
         # Do questionnaire
-        AskQuestion()
+        ask_question()
 
