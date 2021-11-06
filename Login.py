@@ -82,3 +82,6 @@ def login_menu(option):
         # Do questionnaire
         ask_question()
 
+
+def RunGUI():
+    LoginGUI.LoginScreen().run()
