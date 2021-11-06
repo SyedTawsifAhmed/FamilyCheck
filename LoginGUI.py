@@ -1,26 +1,26 @@
-def requestLogin():
+def request_login():
     return None
 
 
-def getLoginInfo():
+def get_login_info():
     return None
 
 
-def successfulLogin():
+def successful_login():
     return None
 
 
-def failedLogin():
+def failed_login():
     return None
 
 
-def requestSignup():
+def request_signup():
     return None
 
 
-def failedSignup():
+def failed_signup():
     return None
 
 
-def getSignupInfo():
+def get_signup_info():
     return None
