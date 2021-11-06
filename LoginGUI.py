@@ -52,3 +52,15 @@ def get_family_info():
 
 def failed_add():
     return None
+
+
+def danger():
+    return None
+
+
+def isolation():
+    return None
+
+
+def warning():
+    return None

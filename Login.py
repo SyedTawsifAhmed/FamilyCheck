@@ -69,27 +69,43 @@ def add_family(email):
     LoginGUI.failed_add()
 
 
-def ask_question():
+def UpdateEveryone(text):
+    pass
+
+
+def ask_question(email):
     """ asks questions from the questionnaire to decide if one has symptoms or not"""
 
     answers = LoginGUI.questionnaire()
-    numYes = 0
-    for answer in answers:
-        if answer:
-            numYes += 1
-
-    if numYes == 0:
-        # Safe
-        pass
-    if numYes == 1:
-        # Warning
-        pass
-    if numYes == 2:
-        # Isolation
-        pass
-    else:
+    profiles = db.child("Profiles").get()
+    name = ''  # placeholder
+    for profile in profiles.each():
+        if profile.val()['email'] == email:
+            name = profile.val()['Name']
+    if answers[0]:
         # Danger
-        pass
+        LoginGUI.danger()
+        text = "FamilyCheck Update: Your family member/friend " + name + \
+               " has been advised to go to their nearest emergency department based of their COVID-19 screening." \
+               " Please check your symptoms and take your COVID-19 screening again if you see any changes."
+        UpdateEveryone(text)
+    if answers[1]:
+        # Isolation/Testing
+        LoginGUI.isolation()
+        text = "FamilyCheck Update: Your family member/friend " + name + \
+               " has been advised to get a COVID-19 (non rapid antigen) test and self-isolate. " \
+               " Please check your symptoms and take your COVID-19 screening again if you see any changes."
+        UpdateEveryone(text)
+    if answers[2]:
+        # Warning
+        LoginGUI.warning()
+        text = "FamilyCheck Update: Your family member/friend " + name + \
+               " has been advised to get a PCR test or to monitor their health for any changes. " \
+               " Please check your symptoms and take your COVID-19 screening again if you see any changes."
+        UpdateEveryone(text)
+    else:
+        # Safe
+        print("You do not need to self-isolate or get tested!")
 
 
 def login_menu(option, email):
@@ -98,10 +114,8 @@ def login_menu(option, email):
         add_family(email)
     else:
         # Do questionnaire
-        ask_question()
+        ask_question(email)
 
 
 def RunGUI():
     LoginGUI.LoginScreen().run()
-
-
