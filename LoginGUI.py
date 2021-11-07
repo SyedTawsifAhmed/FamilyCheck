@@ -54,7 +54,6 @@ class SignUpScreen(Screen):
         """returns the inputted signup info of a user, which includes their
         email, password, confirm password, fullname, phone_num, age and
         vaccine status"""
-        print(self.email.text)
         return self.email.text, self.pw.text, self.confirm.text, \
                self.fullname.text, self.phone_num.text, \
                self.age.text, self.vaccine_status
