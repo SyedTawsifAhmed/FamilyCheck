@@ -83,6 +83,9 @@ class MenuScreen(Screen):
         self.presenter = LoginPresenter(self)
         self.user = ''
 
+    def set_email(self, email):
+        self.user = email
+
 
 class AddFamilyScreen(Screen):
     def __init__(self, **kwargs):
@@ -92,6 +95,9 @@ class AddFamilyScreen(Screen):
 
     user_input = ObjectProperty(None)
     prompt = ObjectProperty(None)
+
+    def set_email(self, email):
+        self.user = email
 
     def submit(self):
         self.presenter.check_family()

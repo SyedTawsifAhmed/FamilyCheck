@@ -15,8 +15,8 @@ class LoginPresenter:
         else:
             print(f"{self.gui.username.text} logged in!")
             self.gui.manager.current = 'menu'
-            self.gui.manager.get_screen('menu').email = self.gui.username.text
-            self.gui.manager.get_screen('fam').email = self.gui.username.text
+            self.gui.manager.get_screen('menu').set_email(self.gui.username.text)
+            self.gui.manager.get_screen('fam').set_email(self.gui.username.text)
 
     def check_signup(self):
         prompt = signup_user(self.gui.get_signup_info()[0],
@@ -37,8 +37,6 @@ class LoginPresenter:
             print("Signup Successful")
 
     def check_family(self):
-        print(self.gui.manager.get_screen('fam').user)
-        print(self.gui.manager.get_screen('fam').user_input.text)
         if Menu.add_family(self.gui.manager.get_screen('fam').user,
                            self.gui.manager.get_screen('fam').user_input.text):
             self.gui.manager.get_screen('fam').successful_add()
