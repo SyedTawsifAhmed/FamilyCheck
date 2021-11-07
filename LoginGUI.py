@@ -1,14 +1,9 @@
-import kivy
-import kivy_gradient
 from kivy.app import App
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
-from kivy.core.window import Window
 from kivy.config import Config
-from kivy.uix import checkbox
-
-from LoginPresenter import LoginPresenter
 from kivy.uix.screenmanager import ScreenManager, Screen
+from LoginPresenter import LoginPresenter
 
 # Kivy Settings
 Config.set('input', 'mouse', 'mouse, multitouch_on_demand')
@@ -29,11 +24,8 @@ class LoginScreen(Screen):
 
     def submit(self):
         """checks the username and password
-
-        :return:
         """
         self.loginPresenter.check_submit()
-        print(self.username.text, self.pw.text)
 
     def get_login_info(self):
         return self.username.text, self.pw.text
@@ -85,10 +77,38 @@ class SignUpScreen(Screen):
         self.fail_prompt.text = prompt
 
 
+class MenuScreen(Screen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.presenter = LoginPresenter(self)
+        self.user = ''
+
+
+class AddFamilyScreen(Screen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.presenter = LoginPresenter(self)
+        self.user = ''
+
+    user_input = ObjectProperty(None)
+    prompt = ObjectProperty(None)
+
+    def submit(self):
+        self.presenter.check_family()
+
+    def failed_add(self):
+        self.prompt.text = "Please try again."
+
+    def successful_add(self):
+        self.prompt.text = "Success! Press back to return to the menu."
+
+
 class LoginApp(App):
 
     def build(self):
         sm = ScreenManager()
         sm.add_widget(LoginScreen(name='login'))
         sm.add_widget(SignUpScreen(name='signup'))
+        sm.add_widget(MenuScreen(name='menu'))
+        sm.add_widget(AddFamilyScreen(name='fam'))
         return sm

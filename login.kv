@@ -223,3 +223,92 @@
                     root.submit()
                 background_normal: ''
                 background_color: "#d3d3d3"
+<MenuScreen>
+    canvas.before:
+        Color:
+            rgba: (255,255,255,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+        padding: [150, 50]
+        spacing: 50
+        Label:
+            text: "Menu"
+            font_size: 45
+            color: "#00003f"
+
+        Button:
+            text: "Add a Family Member"
+            color: (0, 0, 0, 1)
+            font_size: 16
+
+            on_press: root.manager.current = 'fam'
+            background_normal: ''
+            background_color: "#d3d3d3"
+        Button:
+            text: "Questionnaire"
+            color: (0, 0, 0, 1)
+            font_size: 16
+            background_normal: ''
+            background_color: "#d3d3d3"
+
+<AddFamilyScreen>
+    canvas.before:
+        Color:
+            rgba: (255,255,255,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    user_input: user_input
+    prompt: prompt
+
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+        padding: [200, 200]
+        spacing: 5
+
+        Label:
+            text: "Email of Family Member"
+            text_size: self.size
+            halign: 'left'
+            color: (0, 0, 0, 1)
+            font_size: 16
+        TextInput:
+            id: user_input
+            hint_text: "Enter your family member's email"
+            multiline: False
+
+        Label:
+            id: prompt
+            text: ""
+            color: (0, 0, 0, 1)
+            font_size: 12
+
+        GridLayout:
+            cols:2
+            spacing: 60
+            Button:
+                text: "Back"
+                color: (0, 0, 0, 1)
+                font_size: 16
+                size_hint: (.4, 1)
+
+                on_press: root.manager.current = 'menu'
+                background_normal: ''
+                background_color: "#d3d3d3"
+            Button:
+                text: "Confirm"
+                color: (0, 0, 0, 1)
+                font_size: 16
+                size_hint: (.4, 1)
+                on_press:
+                    root.submit()
+                background_normal: ''
+                background_color: "#d3d3d3"
+
+

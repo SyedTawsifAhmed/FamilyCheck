@@ -23,7 +23,7 @@ def login_user(email, pw):
         auth.sign_in_with_email_and_password(email, pw)
         return email
     except:
-        return ''
+        return '-1'
 
 def CreateProfile(email, name, phone_num, age, vaccine_status):
     data = {'email': email, 'phone number': phone_num, 'Name': name, 'Age': age,
