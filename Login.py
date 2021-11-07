@@ -1,5 +1,4 @@
 import pyrebase
-import LoginGUI
 
 firebaseConfig = {'apiKey': "AIzaSyC2LCENKnFLqlnojcWT8CDhTp09sFyothI",
                   'authDomain': "familycheck-14b96.firebaseapp.com",
@@ -17,45 +16,48 @@ auth = firebase.auth()
 db = firebase.database()
 
 
-def login_user():
+def login_user(email, pw):
     """The function takes in user information, email and password in order to get the user logged in.
      Return the email if successfully logged in"""
-
-    email, password = LoginGUI.get_login_info()
     try:
-        auth.sign_in_with_email_and_password(email, password)
-        LoginGUI.successful_login()
-        print("Successfully logged in!")
+        auth.sign_in_with_email_and_password(email, pw)
         return email
     except:
-        LoginGUI.failed_login()
-        print("Invalid email or password")
+        return ''
+    return ''
 
-
-def CreateProfile(email):
-    name, phone_number, age, vaccine_status = LoginGUI.get_profile_info()
-    data = {'email': email, 'phone number': phone_number, 'Name': name, 'Age': age,
+def CreateProfile(email, name, phone_num, age, vaccine_status):
+    data = {'email': email, 'phone number': phone_num, 'Name': name, 'Age': age,
             'Vaccination Status': vaccine_status}
     db.child("Profiles").push(data)
 
 
-def signup_user():
-    """ takes up the email and password of the user, the confirms the password to get the user signed up"""
+def signup_user(email, password, confirm, name, phone_num, age, vaccine_status):
+    """ takes up the email and password of the user,
+    the confirms the password to get the user signed up"""
 
-    email, password, confirm = LoginGUI.get_signup_info()
-    if password == confirm:
-        try:
-            auth.create_user_with_email_and_password(email, password)
-            print("Signup Successful")
-            CreateProfile(email)
-        except:
-            LoginGUI.failed_signup()
-            print("Signup Failed")
+    if not name.strip().isalpha():
+        return 'Invalid name'
+    if not age.isnumeric() or int(age) < 0:
+        return 'Invalid age'
+    if not phone_num.isnumeric() or len(phone_num) != 10:
+        return 'Invalid phone number'
+
+    if password == "":
+        return 'Please enter a password'
+    elif password == confirm:
+        if not name.strip().isalpha():
+            try:
+                auth.create_user_with_email_and_password(email, password)
+                print("Signup Successful")
+                CreateProfile(email, name, "+1" + phone_num,
+                              int(age), vaccine_status)
+                return 'success'
+            except:
+                return 'Invalid email'
     else:
-        LoginGUI.failed_signup()
-        print("Password and confirm do not match")
+        return 'Password and confirm password do not match'
 
 
-def run_LoginGUI():
-    LoginGUI.LoginScreen().run()
+
 

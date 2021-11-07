@@ -1,4 +1,4 @@
-import Login
-import Menu
+from LoginGUI import *
 
-
+if __name__ == "__main__":
+    LoginApp().run()

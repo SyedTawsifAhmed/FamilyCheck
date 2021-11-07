@@ -49,7 +49,7 @@
             id: pw_prompt
             text: ""
             font_size: 12
-            color: (255, 0, 0, 1)
+            color: "#FF0000"
             size_hint: (.1, .1)
         GridLayout:
             cols:2
@@ -65,11 +65,161 @@
                 background_normal: ''
                 background_color: "#d3d3d3"
             Button:
-                text: "Clear"
+                text: "Sign Up"
                 color: (0, 0, 0, 1)
                 font_size: 16
                 size_hint: (.4, 1)
-                on_press: root.clear()
+                on_press:
+                    root.manager.current = 'signup'
                 background_normal: ''
                 background_color: "#d3d3d3"
 
+<SignUpScreen>
+    canvas.before:
+        Color:
+            rgba: (255,255,255,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    fullname: fullname
+    age: age
+    email: email
+    pw: pw
+    confirm: confirm
+    phone_num: phone_num
+    fail_prompt: fail_prompt
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+        padding: [200, 50]
+        spacing: 5
+
+        Label:
+            text: "Full Name"
+            text_size: self.size
+            halign: 'left'
+            color: (0, 0, 0, 1)
+            font_size: 16
+        TextInput:
+            id: fullname
+            hint_text: 'Enter your name'
+            multiline: False
+            write_tab: False
+        Label:
+            text: "Age"
+            text_size: self.size
+            halign: 'left'
+            color: (0, 0, 0, 1)
+            font_size: 16
+        TextInput:
+            id: age
+            hint_text: 'Enter a number'
+            multiline: False
+            write_tab: False
+
+        Label:
+            text: "Phone Number (US/CAN)"
+            text_size: self.size
+            halign: 'left'
+            color: (0, 0, 0, 1)
+            font_size: 16
+
+        TextInput:
+            id: phone_num
+            hint_text: 'Enter your phone number (i.e. XXX-XXX-XXXX)'
+            multiline: False
+            write_tab: False
+        Label:
+            text: "Email"
+            text_size: self.size
+            halign: 'left'
+            color: (0, 0, 0, 1)
+            font_size: 16
+
+        TextInput:
+            id: email
+            hint_text: 'Email'
+            multiline: False
+            write_tab: False
+
+        Label:
+            text: "Password"
+            text_size: self.size
+            halign: 'left'
+            color: (0, 0, 0, 1)
+            font_size: 16
+
+        TextInput:
+            id: pw
+            hint_text: 'Password'
+            text_size: self.size
+            password: True
+            multiline: False
+            write_tab: False
+
+        Label:
+            text: "Confirm Password"
+            text_size: self.size
+            halign: 'left'
+            color: (0, 0, 0, 1)
+            font_size: 16
+        TextInput:
+            id: confirm
+            hint_text: 'Confirm Password'
+            password: True
+            multiline: False
+            write_tab: False
+        Label:
+            text: "Are you vaccinated?"
+            text_size: self.size
+            halign: 'left'
+            color: (0, 0, 0, 1)
+            font_size: 16
+        GridLayout:
+            cols:4
+            spacing: 5
+            Label:
+                text: "Yes"
+                text_size: self.size
+                color: (0, 0, 0, 1)
+                font_size: 14
+            CheckBox:
+                group: "status"
+                on_active: root.checkbox_click(self, self.active, "Yes")
+            Label:
+                text: "No"
+                text_size: self.size
+                color: (0, 0, 0, 1)
+                font_size: 14
+            CheckBox:
+                group: "status"
+                active: True
+                on_active: root.checkbox_click(self, self.active, "No")
+        Label:
+            id: fail_prompt
+            text: ""
+            font_size: 12
+            color: "#FF0000"
+            size_hint: (.1, .1)
+        GridLayout:
+            cols:2
+            spacing: 60
+            Button:
+                text: "Back"
+                color: (0, 0, 0, 1)
+                font_size: 16
+                size_hint: (.4, 1)
+
+                on_press: root.manager.current = 'login'
+                background_normal: ''
+                background_color: "#d3d3d3"
+            Button:
+                text: "Confirm"
+                color: (0, 0, 0, 1)
+                font_size: 16
+                size_hint: (.4, 1)
+                on_press:
+                    root.submit()
+                background_normal: ''
+                background_color: "#d3d3d3"
