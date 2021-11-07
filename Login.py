@@ -24,7 +24,6 @@ def login_user(email, pw):
         return email
     except:
         return ''
-    return ''
 
 def CreateProfile(email, name, phone_num, age, vaccine_status):
     data = {'email': email, 'phone number': phone_num, 'Name': name, 'Age': age,
@@ -36,7 +35,8 @@ def signup_user(email, password, confirm, name, phone_num, age, vaccine_status):
     """ takes up the email and password of the user,
     the confirms the password to get the user signed up"""
 
-    if not name.strip().isalpha():
+    text = name.replace(" ", "")
+    if not text.isalpha():
         return 'Invalid name'
     if not age.isnumeric() or int(age) < 0:
         return 'Invalid age'
@@ -46,15 +46,14 @@ def signup_user(email, password, confirm, name, phone_num, age, vaccine_status):
     if password == "":
         return 'Please enter a password'
     elif password == confirm:
-        if not name.strip().isalpha():
-            try:
-                auth.create_user_with_email_and_password(email, password)
-                print("Signup Successful")
-                CreateProfile(email, name, "+1" + phone_num,
-                              int(age), vaccine_status)
-                return 'success'
-            except:
-                return 'Invalid email'
+        try:
+            auth.create_user_with_email_and_password(email, password)
+            print("Signup Successful")
+            CreateProfile(email, name, "+1" + phone_num,
+                          int(age), vaccine_status)
+            return 'success'
+        except:
+            return 'Invalid email'
     else:
         return 'Password and confirm password do not match'
 
