@@ -7,38 +7,30 @@ from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 
 
-class LoginScreen(App):
+class MenuScreen(App):
     def build(self):
         self.window = GridLayout()
 
 
-def request_login():
+def questionnaire():
     return None
 
 
-def get_login_info():
+def danger():
     return None
 
 
-def successful_login():
+def isolation():
     return None
 
 
-def failed_login():
+def warning():
     return None
 
 
-def request_signup():
+def failed_add():
     return None
 
 
-def failed_signup():
-    return None
-
-
-def get_signup_info():
-    return None
-
-
-def get_profile_info():
+def get_family_info():
     return None
