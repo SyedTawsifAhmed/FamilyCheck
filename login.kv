@@ -1,0 +1,75 @@
+<LoginScreen>
+    canvas.before:
+        Color:
+            rgba: (255,255,255,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    username:username
+    pw:pw
+    pw_prompt: pw_prompt
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+        padding: 40
+
+        Label:
+            text: "Family Check"
+            font_size: 45
+            color: "#00003f"
+
+        GridLayout:
+            cols:2
+            padding: [150, 20]
+
+            Image:
+                source: 'user.png'
+                size_hint_y: 0.2
+                size_hint_x: 0.2
+
+            TextInput:
+                id: username
+                hint_text: 'Username'
+                multiline: False
+                write_tab: False
+
+            Image:
+                source: 'password.png'
+                size_hint_y: 0.2
+                size_hint_x: 0.2
+
+            TextInput:
+                id: pw
+                hint_text: 'Password'
+                password: True
+                multiline: False
+                write_tab: False
+
+        Label:
+            id: pw_prompt
+            text: ""
+            font_size: 12
+            color: (255, 0, 0, 1)
+            size_hint: (.1, .1)
+        GridLayout:
+            cols:2
+            padding: [150, 50]
+            spacing: 60
+            Button:
+                text: "Submit"
+                color: (0, 0, 0, 1)
+                font_size: 16
+                size_hint: (.4, 1)
+
+                on_press: root.submit()
+                background_normal: ''
+                background_color: "#d3d3d3"
+            Button:
+                text: "Clear"
+                color: (0, 0, 0, 1)
+                font_size: 16
+                size_hint: (.4, 1)
+                on_press: root.clear()
+                background_normal: ''
+                background_color: "#d3d3d3"
+

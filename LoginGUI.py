@@ -1,30 +1,44 @@
+import kivy
+import kivy_gradient
 from kivy.app import App
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.label import Label
-from kivy.uix.image import Image
-from kivy.uix.button import Button
-from kivy.uix.button import Button
-from kivy.uix.textinput import TextInput
+from kivy.uix.widget import Widget
+from kivy.properties import ObjectProperty
+from kivy.lang import Builder
+from kivy.core.window import Window
+from kivy.config import Config
+
+#Kivy Settings
+Config.set('graphics', 'resizable', False)
+Builder.load_file('login.kv')
+
+class LoginScreen(Widget):
+
+    username = ObjectProperty(None)
+    pw = ObjectProperty(None)
+    pw_prompt = ObjectProperty(None)
+
+    def submit(self):
+        username = self.username.text
+        pw = self.pw.text
+        print(username, pw)
+
+    def clear(self):
+        self.username.text = ""
+        self.pw.text = ""
+        print("clear")
 
 
-class LoginScreen(App):
+class TestApp(App):
     def build(self):
-        self.window = GridLayout()
+        return LoginScreen()
 
 
-def request_login():
-    return None
+def get_login_info(screen):
+    return screen.username, screen.password
 
 
-def get_login_info():
-    return None
-
-
-def successful_login():
-    return None
-
-
-def failed_login():
+def failed_login(screen):
+    screen.pw_prompt.text = "Invalid username or password."
     return None
 
 
@@ -37,8 +51,4 @@ def failed_signup():
 
 
 def get_signup_info():
-    return None
-
-
-def get_profile_info():
     return None
