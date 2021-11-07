@@ -33,8 +33,9 @@ def login_user():
 
 
 def CreateProfile(email):
-    name, age, vaccine_status = LoginGUI.get_profile_info()
-    data = {'email': email, 'Name': name, 'Age': age, 'Vaccination Status': vaccine_status}
+    name, phone_number, age, vaccine_status = LoginGUI.get_profile_info()
+    data = {'email': email, 'phone number': phone_number, 'Name': name, 'Age': age,
+            'Vaccination Status': vaccine_status}
     db.child("Profiles").push(data)
 
 
@@ -57,3 +58,4 @@ def signup_user():
 
 def run_LoginGUI():
     LoginGUI.LoginScreen().run()
+

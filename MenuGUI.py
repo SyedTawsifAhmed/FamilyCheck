@@ -28,6 +28,10 @@ def warning():
     return None
 
 
+def safe():
+    return None
+
+
 def failed_add():
     return None
 
