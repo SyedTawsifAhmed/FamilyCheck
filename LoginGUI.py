@@ -28,7 +28,7 @@ class LoginScreen(Widget):
         print("clear")
 
 
-class TestApp(App):
+class LoginApp(App):
     def build(self):
         return LoginScreen()
 
